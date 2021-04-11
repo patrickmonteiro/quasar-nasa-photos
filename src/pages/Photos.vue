@@ -5,6 +5,7 @@
         outlined
         v-model="model"
         :options="optionsSol"
+        :loading="loadingSol"
         label="Sol"
         map-options
         option-label="sol"
@@ -96,6 +97,7 @@ export default {
         rowsPerPage: 25,
         rowsNumber: 300
       },
+      loadingSol: true,
       loading: false
     }
   },
@@ -109,11 +111,17 @@ export default {
   },
   methods: {
     async getManifest () {
+      this.loadingSol = true
       try {
         const { data } = await this.$axios.get('manifests/curiosity')
         this.manifest = data.photo_manifest
         this.optionsSol = data.photo_manifest.photos.reverse()
+        this.loadingSol = false
       } catch (error) {
+        this.$q.notify({
+          type: 'negative',
+          message: `${error}`
+        })
         console.error(error)
       }
     },
@@ -125,6 +133,10 @@ export default {
         this.photoList = data.photos
         this.loading = false
       } catch (error) {
+        this.$q.notify({
+          type: 'negative',
+          message: `${error}`
+        })
         console.error(error)
       }
     },
