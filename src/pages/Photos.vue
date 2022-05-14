@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <div class="row">
+    <div class="row q-col-gutter-sm">
       <q-select
         outlined
         v-model="model"
@@ -9,15 +9,32 @@
         label="Sol"
         map-options
         option-label="sol"
-        class="col-12"
+        class="col-lg-6 col-md-6 col-xs-12"
         @input="setSolConfigurations"
+        dense
       >
         <template v-slot:prepend>
           <q-icon name="brightness_high" />
         </template>
       </q-select>
+
+      <q-select
+        outlined
+        v-model="rover"
+        :options="optionsRover"
+        label="Rover"
+        map-options
+        class="col-lg-6 col-md-6 col-xs-12"
+        dense
+        @input="getManifest()"
+      >
+        <template v-slot:prepend>
+          <q-icon name="precision_manufacturing" />
+        </template>
+      </q-select>
     </div>
-    <div class="row q-mt-sm">
+
+    <div>
       <q-table
         grid
         :data="photoList"
@@ -28,12 +45,13 @@
         hide-pagination
         binary-state-sort
         :loading="loading"
+        class="row"
       >
         <template v-slot:item="props">
           <div
-            class="col-xs-12 col-md-3 q-pa-sm"
+            class="col-xs-12 col-md-4 col-lg-3 q-pa-xs"
           >
-            <q-card class="bg-primary text-white">
+            <q-card class="bg-primary text-white fit">
               <q-img
                 :src="props.row.img_src"
                 :ratio="4/3"
@@ -65,12 +83,17 @@
         v-if="photoList.length > 0"
         v-model="pagination.page"
         @input="getPhotos"
-        color="black"
+        color="primary"
         :max="pagesNumber"
         :max-pages="6"
         :boundary-numbers="false"
+        direction-links
+        size="16px"
       />
     </div>
+    <q-page-sticky position="bottom-right" :offset="[18, 18]" v-if="photoList.length > 0">
+      <q-btn fab icon="expand_less" color="white" text-color="primary" @click="scrollToTop" />
+    </q-page-sticky>
   </q-page>
 </template>
 
@@ -90,6 +113,8 @@ export default {
           field: 'id'
         }
       ],
+      rover: 'curiosity',
+      optionsRover: ['curiosity', 'opportunity', 'spirit'],
       pagination: {
         sortBy: 'desc',
         descending: false,
@@ -113,10 +138,12 @@ export default {
     async getManifest () {
       this.loadingSol = true
       try {
-        const { data } = await this.$axios.get('manifests/curiosity')
+        const { data } = await this.$axios.get(`manifests/${this.rover}`)
         this.manifest = data.photo_manifest
         this.optionsSol = data.photo_manifest.photos.reverse()
         this.loadingSol = false
+        this.photoList = []
+        this.model = ''
       } catch (error) {
         this.$q.notify({
           type: 'negative',
@@ -129,7 +156,7 @@ export default {
       this.photoList = []
       this.loading = true
       try {
-        const { data } = await this.$axios.get(`rovers/curiosity/photos?sol=${this.solSelected}&page=${this.pagination.page}`)
+        const { data } = await this.$axios.get(`rovers/${this.rover}/photos?sol=${this.solSelected}&page=${this.pagination.page}`)
         this.photoList = data.photos
         this.loading = false
       } catch (error) {
@@ -145,6 +172,9 @@ export default {
       this.pagination.page = 1
       this.pagination.rowsNumber = val.total_photos
       this.getPhotos()
+    },
+    scrollToTop () {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 }
