@@ -53,7 +53,7 @@
           >
             <q-card class="bg-primary text-white fit">
               <q-img
-                :src="props.row.img_src"
+                :src="`https://quasar-nasa-photos.netlify.app/.netlify/images?url=${props.row.img_src}`"
                 :ratio="4/3"
               >
                 <template v-slot:loading>
