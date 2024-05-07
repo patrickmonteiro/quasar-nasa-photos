@@ -1,2 +1,10 @@
+[[headers]]
+  for = "/service-worker.js"
+  [headers.values]
+  cache-control = '''
+  max-age=0,
+  no-cache,
+  must-revalidate'''
+
 [images]
   remote_images = ["https://mars.nasa.gov/*", "https://animals.more-images.com/[bcr]at/.*"]
