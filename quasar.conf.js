@@ -112,7 +112,8 @@ module.exports = function (/* ctx */) {
 
       // Quasar plugins
       plugins: [
-        'Notify'
+        'Notify',
+        'Dialog'
       ]
     },
 
@@ -128,7 +129,11 @@ module.exports = function (/* ctx */) {
     // https://v1.quasar.dev/quasar-cli/developing-pwa/configuring-pwa
     pwa: {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
-      workboxOptions: {}, // only for GenerateSW
+      workboxOptions: {
+        skipWaiting: true,
+        clientsClaim: true,
+        exclude: [/netlify.toml/]
+      }, // only for GenerateSW
       manifest: {
         name: 'Quasar Nasa Photos',
         short_name: 'Quasar Nasa Photos',
