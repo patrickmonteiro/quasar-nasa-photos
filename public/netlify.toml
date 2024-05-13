@@ -7,4 +7,4 @@
   must-revalidate'''
 
 [images]
-  remote_images = ["https://mars.nasa.gov/*"]
+  remote_images = ["https://mars.nasa.gov/*", "http://mars.nasa.gov/*"]
