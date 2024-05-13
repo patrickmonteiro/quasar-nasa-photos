@@ -35,6 +35,15 @@
           <q-icon name="precision_manufacturing" />
         </template>
       </q-select>
+
+      <div class="col-md-6 col-lg-6 col-xs-12">
+        <q-banner class="bg-amber" dense>
+          <span class="text-caption">
+            The <strong>opportunity</strong> and <strong>spirit</strong> rovers appear to have had their photos removed from the api for now.
+            <a href="https://github.com/corincerami/mars-photo-api/issues/197" target="_blank§">More information</a>
+          </span>
+        </q-banner>
+      </div>
     </div>
 
     <div class="row q-col-gutter-sm">
@@ -196,7 +205,7 @@ export default {
         }
       ],
       rover: 'curiosity',
-      optionsRover: ['curiosity', 'opportunity', 'spirit'],
+      optionsRover: ['curiosity'],
       pagination: {
         sortBy: 'desc',
         descending: false,
