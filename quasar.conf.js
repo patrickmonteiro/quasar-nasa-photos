@@ -139,8 +139,7 @@ module.exports = function (/* ctx */) {
       workboxPluginMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       workboxOptions: {
         skipWaiting: true,
-        clientsClaim: true,
-        exclude: [/netlify.toml/]
+        clientsClaim: true
       }, // only for GenerateSW
       manifest: {
         name: 'Quasar Nasa Photos',

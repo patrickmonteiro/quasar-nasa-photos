@@ -1,0 +1,24 @@
+# Netlify reads this file from the repo root; it takes precedence over the build settings in the Netlify UI.
+[build]
+  # `yarn build` sets NODE_OPTIONS=--openssl-legacy-provider, which webpack 4 (@quasar/app v2)
+  # needs on Node 17+. Calling `quasar build` directly fails with error:0308010C.
+  command = "yarn build"
+  publish = "dist/pwa"
+
+[[headers]]
+  for = "/service-worker.js"
+  [headers.values]
+  cache-control = '''
+  max-age=0,
+  no-cache,
+  must-revalidate'''
+
+# Hosts the Netlify Image CDN may fetch rover images from (regexes)
+[images]
+  remote_images = [
+    "https://mars.nasa.gov/.*",
+    "http://mars.nasa.gov/.*",
+    "https://mars.jpl.nasa.gov/.*",
+    "http://mars.jpl.nasa.gov/.*",
+    "https://planetarydata.jpl.nasa.gov/.*"
+  ]

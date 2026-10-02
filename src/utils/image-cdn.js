@@ -1,5 +1,5 @@
 // Netlify Image CDN — resizes/re-encodes the rover images on the fly.
-// Allowed source hosts are listed in public/netlify.toml under [images].
+// Allowed source hosts are listed in netlify.toml (repo root) under [images].
 const CDN_ORIGIN = 'https://quasar-nasa-photos.netlify.app'
 
 export const DEFAULT_IMAGE_SETTINGS = {

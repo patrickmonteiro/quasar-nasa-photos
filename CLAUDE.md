@@ -37,9 +37,9 @@ There is no test suite (`yarn test` is a no-op). ESLint also runs during dev/bui
 - **Rovers (`src/pages/Rovers.vue`)**: fleet cards linking to `/photos?rover=`.
 - **Photos (`src/pages/Photos.vue`)**: RoverPicker (radiogroup, arrow keys), Sol/Camera fields, collapsible image settings (CDN chips/fields), SectionHeader, PhotoCard grid, Skeleton while loading, EmptyState with one recovery action, error Banner. Selection state is mirrored in the route query (`?rover=&sol=&camera=&page=`) through `syncQuery()`, and a `$route.query` watcher reloads when the query changes without remounting (back/forward, deep links). Requests are tagged with `requestId` so stale responses are dropped. Defaults to the newest sol when none is given.
 - **Components**: `PhotoCard` (4:3 card, falls back to raw `img_src` if the CDN fails), `PhotoViewer` (maximized lightbox, `v-model` plus `:index.sync`, arrow keys, shows the original image and NASA/JPL-Caltech credit), `RoverBadge` (status as icon + word).
-- **Image CDN**: thumbnails go through the Netlify Image CDN via `cdnUrl()` in `src/utils/image-cdn.js` (absolute `https://quasar-nasa-photos.netlify.app/.netlify/images?...`). Source hosts must be allow-listed (as regexes) in `public/netlify.toml` `[images] remote_images`: currently `mars.nasa.gov`, `mars.jpl.nasa.gov` and `planetarydata.jpl.nasa.gov` (Spirit/Opportunity). Default thumbnail is 480x360 (4:3).
+- **Image CDN**: thumbnails go through the Netlify Image CDN via `cdnUrl()` in `src/utils/image-cdn.js` (absolute `https://quasar-nasa-photos.netlify.app/.netlify/images?...`). Source hosts must be allow-listed (as regexes) in `netlify.toml` `[images] remote_images`: currently `mars.nasa.gov`, `mars.jpl.nasa.gov` and `planetarydata.jpl.nasa.gov` (Spirit/Opportunity). Default thumbnail is 480x360 (4:3).
 - **Layout**: `MainLayout` has the AppBar (rocket wordmark + theme toggle), a `q-drawer` nav at ≥1024px and a BottomNav `q-footer` below that (`$q.screen.lt.md`). Routes: `home`, `photos`, `rovers` (`src/router/routes.js`).
-- **PWA**: configured in `quasar.conf.js` (`GenerateSW`, `skipWaiting`/`clientsClaim`, `netlify.toml` excluded from precache). `src-pwa/register-service-worker.js` shows a (Portuguese) Quasar `Dialog` prompting reload when an update is found. `netlify.toml` disables caching of `service-worker.js`. Dev runs in PWA mode too, so a stale service worker can serve old CSS/JS in the browser; unregister it (DevTools → Application) if changes don't show up.
+- **PWA**: configured in `quasar.conf.js` (`GenerateSW`, `skipWaiting`/`clientsClaim`). `src-pwa/register-service-worker.js` shows a (Portuguese) Quasar `Dialog` prompting reload when an update is found. `netlify.toml` disables caching of `service-worker.js`. Dev runs in PWA mode too, so a stale service worker can serve old CSS/JS in the browser; unregister it (DevTools → Application) if changes don't show up.
 
 ## Quasar docs
 
@@ -47,4 +47,4 @@ The Quasar MCP server (`@quasar/mcp`) is registered for this project, but its bu
 
 ## Deployment
 
-Hosted on Netlify (`quasar-nasa-photos.netlify.app`); `public/netlify.toml` is copied into the build output.
+Hosted on Netlify (`quasar-nasa-photos.netlify.app`). Config lives in the root `netlify.toml` (build command `yarn build`, publish `dist/pwa`, headers, image CDN allow-list) and overrides the Netlify UI build settings. `MARSVISTA_API_KEY` must be set in the Netlify environment variables.
