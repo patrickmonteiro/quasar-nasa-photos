@@ -1,0 +1,83 @@
+/* Quasar NASA design system: tokens (copied from the design system's tokens.css; fixed stray '}}' that dropped every other typography rule) */
+:root, [data-theme="dark"], body.body--dark {
+  --space-950: #05070c;
+  --space-900: #0b1020;
+  --space-800: #141b2d;
+  --line: #2a3550;
+  --line-strong: #5b6a88;
+  --ink: #eef2f8;
+  --ink-muted: #a3aec2;
+  --ink-faint: #7c89a3;
+  --ignition: #ff6a2b;
+  --on-ignition: #1a0a03;
+  --ignition-soft: #33170c;
+  --regolith: #d9774a;
+  --plume: #ffc247;
+  --on-plume: #1a1203;
+  --plume-soft: #2e2309;
+  --orbit: #7fb2ff;
+  --orbit-soft: #0f213f;
+  --signal-go: #3ddc97;
+  --signal-go-soft: #0c2a20;
+  --signal-abort: #ff6b85;
+  --signal-abort-soft: #3a1018;
+  --scrim: rgba(5, 7, 12, 0.72);
+  --shadow-raised: 0 12px 32px rgba(0, 0, 0, 0.55);
+  --shadow-ignition: 0 8px 28px rgba(255, 106, 43, 0.35);
+}
+[data-theme="light"], body.body--light {
+  --space-950: #f4f2ee;
+  --space-900: #ffffff;
+  --space-800: #ebe7e0;
+  --line: #d6d1c8;
+  --line-strong: #7a8394;
+  --ink: #0b1020;
+  --ink-muted: #4a5368;
+  --ink-faint: #5f6879;
+  --ignition: #a8380b;
+  --on-ignition: #ffffff;
+  --ignition-soft: #fde4d6;
+  --regolith: #9a3412;
+  --plume: #f2b233;
+  --on-plume: #1a1203;
+  --plume-soft: #fdf0cf;
+  --orbit: #1d4ed8;
+  --orbit-soft: #dde8ff;
+  --signal-go: #04694a;
+  --signal-go-soft: #d5f3e6;
+  --signal-abort: #be123c;
+  --signal-abort-soft: #fde0e6;
+  --scrim: rgba(5, 7, 12, 0.72);
+  --shadow-raised: 0 8px 24px rgba(11, 16, 32, 0.12);
+  --shadow-ignition: 0 6px 20px rgba(168, 56, 11, 0.25);
+}
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+  --z-header: 2000;
+  --z-bottom-nav: 2000;
+  --z-dialog: 6000;
+  --font-display: "Chakra Petch", "Arial Narrow", system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+.display-xl { font-family: var(--font-display); font-size: 56px; line-height: 60px; font-weight: 700; letter-spacing: -0.01em; text-transform: uppercase; }
+.display-l { font-family: var(--font-display); font-size: 40px; line-height: 44px; font-weight: 600; }
+.title { font-family: var(--font-display); font-size: 24px; line-height: 30px; font-weight: 600; }
+.subtitle { font-family: var(--font-display); font-size: 18px; line-height: 24px; font-weight: 600; }
+.body { font-family: var(--font-sans); font-size: 15px; line-height: 24px; font-weight: 400; }
+.body-strong { font-family: var(--font-sans); font-size: 15px; line-height: 24px; font-weight: 600; }
+.body-sm { font-family: var(--font-sans); font-size: 13px; line-height: 20px; font-weight: 400; }
+.overline { font-family: var(--font-mono); font-size: 11px; line-height: 16px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; }
+.data { font-family: var(--font-mono); font-size: 14px; line-height: 20px; font-weight: 500; }
+.data-xl { font-family: var(--font-mono); font-size: 32px; line-height: 36px; font-weight: 500; letter-spacing: -0.02em; }

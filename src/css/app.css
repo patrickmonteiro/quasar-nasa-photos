@@ -1,1 +1,258 @@
-/* app global css */
+/* App styles. Tokens live in qn-tokens.css and design-system components (qn-*) in
+   qn-components.css; this file adapts Quasar components to them and holds page layout. */
+
+body,
+body.body--dark,
+body.body--light {
+  background: var(--space-950);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 24px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+.qn-page {
+  padding: var(--space-5) var(--space-5) var(--space-7);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.qn-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.qn-page-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.qn-muted {
+  color: var(--ink-muted);
+}
+
+.qn-credit {
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ink-muted);
+}
+
+.qn-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 599px) {
+  .qn-page {
+    padding: var(--space-4) var(--space-4) var(--space-6);
+  }
+
+  .display-l {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .qn-hero {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .qn-hero__title {
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  /* Smaller planet so it stays in the corner instead of behind the copy */
+  .qn-hero__planet {
+    width: 180px;
+    height: 180px;
+    right: -90px;
+    top: -90px;
+  }
+
+  .qn-hero__orbit {
+    width: 280px;
+    height: 280px;
+    right: -140px;
+    top: -140px;
+  }
+
+  .qn-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .qn-stat__value {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .qn-photos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+}
+
+/* ---------- Quasar adapters ---------- */
+
+.q-icon.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Layers: header/drawer/footer on space-900, floating menus on space-800 */
+.q-header,
+.q-footer,
+.q-drawer {
+  background: var(--space-900);
+  color: var(--ink);
+}
+
+.q-menu,
+.q-menu.q-dark {
+  background: var(--space-800);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-raised);
+}
+
+.q-item {
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+.q-item__label--caption {
+  color: var(--ink-muted);
+}
+
+/* q-btn with qn-btn classes: let the design system own the look */
+.q-btn.qn-btn {
+  min-height: 0;
+  text-transform: none;
+}
+
+.q-btn.qn-btn .q-btn__wrapper {
+  padding: 0;
+  min-height: 0;
+}
+
+.q-btn.qn-btn .q-btn__wrapper:before {
+  box-shadow: none;
+}
+
+.q-btn.qn-btn .q-icon {
+  font-size: 20px;
+}
+
+.q-btn.qn-btn--icon .q-icon {
+  font-size: 24px;
+}
+
+.q-btn.qn-btn .q-focus-helper {
+  display: none;
+}
+
+/* Field: q-input / q-select outlined + stack-label */
+.qn-field.q-field--outlined .q-field__control {
+  height: 52px;
+  min-height: 52px;
+  padding: 0 var(--space-3);
+  background: var(--space-800);
+  border-radius: var(--radius-md);
+}
+
+.qn-field.q-field--outlined .q-field__control:before {
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+}
+
+.qn-field.q-field--outlined:hover .q-field__control:before {
+  border-color: var(--ink-muted);
+}
+
+.qn-field.q-field--outlined .q-field__control:after {
+  border-radius: var(--radius-md);
+}
+
+.qn-field .q-field__marginal {
+  height: 52px;
+  color: var(--ink-muted);
+}
+
+.qn-field .q-field__marginal .q-icon {
+  font-size: 20px;
+}
+
+.qn-field .q-field__label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.qn-field .q-field__native,
+.qn-field .q-field__input,
+.qn-field .q-field__prefix {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.qn-field .q-field__suffix {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+
+.qn-field .q-field__bottom {
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ink-muted);
+}
+
+.qn-field.q-field--error .q-field__bottom {
+  color: var(--signal-abort);
+}
+
+/* Pagination */
+.qn-pagination .q-btn {
+  font-family: var(--font-mono);
+  border-radius: var(--radius-md);
+}
+
+/* ---------- Layout ---------- */
+
+.qn-appbar__toolbar {
+  height: 64px;
+  padding: 0 var(--space-4);
+}
+
+.qn-wordmark {
+  text-decoration: none;
+}
+
+.qn-wordmark__mark.q-icon {
+  font-size: 26px;
+}
+
+.qn-drawer .qn-nav {
+  height: 100%;
+}
+
+.qn-nav__item .q-icon,
+.qn-tab .q-icon {
+  font-size: 24px;
+}
+
+.qn-bottomnav .qn-tab__icon .q-icon {
+  font-size: 24px;
+}

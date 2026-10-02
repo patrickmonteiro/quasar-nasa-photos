@@ -1,25 +1,28 @@
 {
   "name": "quasar-nasa-photos",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
+  "description": "Browse raw rover photos from Mars, powered by the Mars Vista API",
   "productName": "Quasar Nasa Photos",
   "author": "Patrick Monteiro <eng.patrickmonteiro@gmail.com>",
   "private": true,
   "scripts": {
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider quasar dev -m pwa",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider quasar build -m pwa",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@quasar/cli": "^2.3.0",
-    "@quasar/extras": "^1.13.6",
-    "axios": "^0.21.1",
-    "core-js": "^3.6.5",
-    "quasar": "^1.18.10",
-    "vue-i18n": "^8.0.0"
+    "@quasar/cli": "^2.5.0",
+    "@quasar/extras": "^1.18.0",
+    "axios": "^1.20.0",
+    "core-js": "^3.50.0",
+    "quasar": "^1.22.10",
+    "vue-i18n": "^8"
   },
   "devDependencies": {
-    "@quasar/app": "^2.3.0",
+    "@quasar/app": "^2.4.4",
     "babel-eslint": "^10.0.1",
+    "dotenv": "^16",
     "eslint": "^7.21.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.14.0",

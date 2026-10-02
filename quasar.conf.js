@@ -8,6 +8,9 @@
 /* eslint-env node */
 const ESLintPlugin = require('eslint-webpack-plugin')
 
+// Loads MARSVISTA_API_KEY (and other vars) from .env into process.env
+require('dotenv').config()
+
 module.exports = function (/* ctx */) {
   return {
     // https://v1.quasar.dev/quasar-cli/supporting-ts
@@ -20,13 +23,15 @@ module.exports = function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://v1.quasar.dev/quasar-cli/boot-files
     boot: [
-
       'i18n',
-      'axios'
+      'axios',
+      'theme'
     ],
 
     // https://v1.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: [
+      'qn-tokens.css',
+      'qn-components.css',
       'app.css'
     ],
 
@@ -40,13 +45,17 @@ module.exports = function (/* ctx */) {
       // 'line-awesome',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
-      'roboto-font', // optional, you are not bound to it
-      'material-icons' // optional, you are not bound to it
+      'material-symbols-outlined'
     ],
 
     // Full list of options: https://v1.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
+
+      // Exposed to the client as process.env.*; the key ends up in the bundle
+      env: {
+        MARSVISTA_API_KEY: process.env.MARSVISTA_API_KEY
+      },
 
       // transpile: false,
 
@@ -81,20 +90,20 @@ module.exports = function (/* ctx */) {
 
     // https://v1.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
     framework: {
-      iconSet: 'material-icons', // Quasar icon set
+      iconSet: 'material-symbols-outlined', // Quasar icon set (icons use the sym_o_ prefix)
       lang: 'en-us', // Quasar language pack
       config: {
+        dark: true,
+        // Deep Space (dark) brand; boot/theme.js swaps in the Lunar (light) values
         brand: {
-          primary: '#0b3e91',
-          secondary: '#26A69A',
-          accent: '#9C27B0',
-  
-          dark: '#1d1d1d',
-  
-          positive: '#21BA45',
-          negative: '#fc3e21',
-          info: '#31CCEC',
-          warning: '#F2C037'
+          primary: '#ff6a2b', // ignition
+          secondary: '#d9774a', // regolith
+          accent: '#7fb2ff', // orbit
+          dark: '#0b1020', // space-900
+          positive: '#3ddc97', // signal-go
+          negative: '#ff6b85', // signal-abort
+          info: '#7fb2ff', // orbit
+          warning: '#ffc247' // plume
         }
       },
 
@@ -112,7 +121,6 @@ module.exports = function (/* ctx */) {
 
       // Quasar plugins
       plugins: [
-        'Notify',
         'Dialog'
       ]
     },
@@ -137,11 +145,11 @@ module.exports = function (/* ctx */) {
       manifest: {
         name: 'Quasar Nasa Photos',
         short_name: 'Quasar Nasa Photos',
-        description: 'A Quasar Framework app',
+        description: 'Browse raw rover photos from Mars',
         display: 'standalone',
         orientation: 'portrait',
-        background_color: '#ffffff',
-        theme_color: '#0b3e91',
+        background_color: '#05070c',
+        theme_color: '#0b1020',
         icons: [
           {
             src: 'icons/icon-128x128.png',
